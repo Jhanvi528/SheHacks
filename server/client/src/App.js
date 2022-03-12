@@ -8,7 +8,11 @@ import Homepage from './components/Homepage.js'
 import Login  from './components/Login.js'
 import Signup from './components/Signup.js'
 import LandingPage from "./components/LandingPage"
-
+import Shopkeeper from './components/Shopkeeper'
+import Grocery from "./components/Grocery"
+import Clothing from "./components/Clothing"
+import Accessories from "./components/Accessories"
+import Electronics from "./components/Electronics"
 
 function App () {
   const [user, setUserState] = useState({})
@@ -32,7 +36,12 @@ function App () {
         />
         <Route exact path='/signup' element={<Signup />}></Route>
         <Route path='/product' exact element={<Store />} />
-        <Route path='/product/:listing_id' element={<Product />} />
+        <Route path='/grocery' exact element={<Grocery />} />
+        <Route path='/accessories' exact element={<Accessories />} />
+        <Route path='/clothing' exact element={<Clothing />} />
+        <Route path='/electronics' exact element={<Electronics />} />
+        {/* <Route path='/product/:id' element={<Product />} /> */}
+        <Route path='/shopkeeper' element={<Shopkeeper />}/>
         <Route>404 error page</Route>
       </Routes>
     </Router>

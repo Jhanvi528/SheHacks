@@ -1,46 +1,51 @@
 import React from 'react'
-import upperslide_1 from '../images/upperslide_1.jpg'
-import upperslide_2 from '../images/upperslide_2.jpg'
-import upperslide_3 from '../images/upperslide_3.jpg'
-import upperslide_4 from '../images/upperslide_4.jpg'
-import upperslide_5 from '../images/upperslide_5.jpg'
-import upperslide_6 from '../images/upperslide_6.jpg'
+import slide1 from '../images/slider (1).jpg'
+import slide2 from '../images/slider (2).jpg'
+import slide3 from '../images/slider (3).jpg'
+import slide4 from '../images/slider (4).jpg'
+import slide5 from '../images/slider (5).jpg'
+import slide6 from '../images/slider (6).jpg'
 import Slide from './Slide.js'
 
 function UpperSlide () {
   return (
     <div id='testimonials'>
-      <div id='carouselExampleControls' className='carousel slide' data-ride='carousel' data-interval="3000">
+      <div
+        id='carouselExampleControls'
+        className='carousel slide'
+        data-ride='carousel'
+        data-interval='3000'
+      >
         <div className='carousel-inner'>
           <div className='carousel-item active'>
             <img
-              src={upperslide_1}
+              src={slide1}
               className='testimonial-img'
               alt='handicraft-pics'
             />
           </div>
           <Slide
-            src={upperslide_2}
+            src={slide2}
             className='testimonial-img'
             alt='handicrft-pics'
           />
           <Slide
-            src={upperslide_3}
+            src={slide3}
             className='testimonial-img'
             alt='handicrft-pics'
           />
           <Slide
-            src={upperslide_4}
+            src={slide4}
             className='testimonial-img'
             alt='handicrft-pics'
           />
           <Slide
-            src={upperslide_5}
+            src={slide5}
             className='testimonial-img'
             alt='handicrft-pics'
           />
           <Slide
-            src={upperslide_6}
+            src={slide6}
             className='testimonial-img'
             alt='handicrft-pics'
           />

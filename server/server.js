@@ -12,9 +12,14 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const passportLocalMongoose = require('passport-local-mongoose')
 const bcypt = require('bcrypt')
+var fs = require('fs');
+var path = require('path');
+var multer = require('multer');
 const noOfSaltRounds = 10
 
-app.use(bodyParser.json());
+// const upload = multer({ dest: 'uploads/' })
+
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 app.use(express.json())
@@ -32,16 +37,28 @@ app.use(passport.session())
 mongoose.connect(process.env.MONGOOSE_CONNECT, { useNewUrlParser: true })
 
 mongoose.connect(process.env.MONGOOSE_CONNECT)
+
 const userSchema = new mongoose.Schema({
   email: String,
   password: String
 })
 
+const itemSchema = new mongoose.Schema({
+  id: Number,
+  name: String,
+  location: String,
+  item: String,
+  price: Number,
+  cat: String,
+  desc: String,
+  img: String
+})
+
+
 userSchema.plugin(passportLocalMongoose)
 
 const User = mongoose.model('User', userSchema)
-
-passport.use(User.createStrategy())
+const Product = mongoose.model('Product', itemSchema)
 
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
@@ -68,9 +85,9 @@ passport.use(
   })
 )
 
-app.get("/",function(req,res){
-  res.send("Hello");
-});
+// app.get('/', function (req, res) {
+//   res.send('Hello')
+// })
 
 app.post('/login', function (req, res) {
   const email1 = req.body.email
@@ -84,15 +101,13 @@ app.post('/login', function (req, res) {
         bcypt.compare(password1, foundUser.password, function (err, result) {
           if (result == true) {
             return res.send({
-              message: 'Successfully authenticated',
               user: foundUser
             })
           }
         })
       } else {
         return res.send({
-          message: 'Not signed up',
-          user: foundUser
+          user: null
         })
       }
     }
@@ -109,16 +124,87 @@ app.post('/signup', function (req, res) {
       if (!user) {
         newuser.save(function (err) {
           if (err) {
-            res.send(err)
+            res.json({ data: 0 })
             console.log(err)
           } else {
-            res.send({ message: 'User signup successful' })
+            res.json({ data: 1 })
           }
         })
       } else {
-        res.send({ message: 'Already exists.' })
+        res.json({ data: 0 })
       }
     })
+  })
+})
+
+count = 0
+app.post('/shopkeeper', function (req, res) {
+  count = count + 1
+  
+  const newitem = new Product({
+          id: count,
+          name: req.body.name,
+          location: req.body.location,
+          price: req.body.price,
+          cat: req.body.cat,
+          desc: req.body.desc,
+          item: req.body.item,
+          img:req.body.img
+        })
+        newitem.save(function (err) {
+        if (err) {
+          console.log(err)
+      }
+  })
+})
+
+app.get('/clothing', function (req, res) {
+  Product.find({cat:'clothing'}, function (err, result) {
+    if (!err) {
+      res.json(result)
+    } else {
+      console.log(err)
+    }
+  })
+})
+
+app.get('/grocery', function (req, res) {
+  Product.find({cat:'grocery'}, function (err, result) {
+    if (!err) {
+      res.json(result)
+    } else {
+      console.log(err)
+    }
+  })
+})
+
+app.get('/accessories', function (req, res) {
+  Product.find({cat:'accessories'}, function (err, result) {
+    if (!err) {
+      res.json(result)
+    } else {
+      console.log(err)
+    }
+  })
+})
+
+app.get('/electronics', function (req, res) {
+  Product.find({cat:'electronics'}, function (err, result) {
+    if (!err) {
+      res.json(result)
+    } else {
+      console.log(err)
+    }
+  })
+})
+app.post('/productfind', function (req, res) {
+  const find_id = req.body.id
+  Product.findOne({ id: find_id }, function (err, result) {
+    if (!err) {
+      res.json(result)
+    } else {
+      console.log(err)
+    }
   })
 })
 

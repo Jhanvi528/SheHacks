@@ -15,31 +15,34 @@ import {
 } from '@chakra-ui/react'
 import Header from './components/Header'
 import { useParams } from 'react-router-dom'
-import { useRef } from 'react'
-
-// const Header = ({ title }) => (
-//   <Box padding={6} shadow='md'>
-//     <Heading>{title}</Heading>
-//   </Box>
-// )
+import { WhatsappShareButton } from 'react-share'
+import { WhatsappIcon } from 'react-share'
 
 function Product () {
   const [state, setState] = useState({})
-  const { listing_id } = useParams()
-  console.log(listing_id)
+  const id1 = useParams()
+  const [image, setImage] = useState('')
+  // console.log(id1.id)
+  // useEffect(async () => {
+  //   const response = await fetch('/product')
+  //   const data = await response.json()
+  //   setState(data)
+  //   setImage(data.img)
+  // }, [])
 
-  const [image, setImage] = useState({})
-  
-  useEffect(async () => {
-    const response = await fetch(
-      `https://openapi.etsy.com/v2/listings/${listing_id}?api_key=b2trjlfahlgzbgecvb26mbct&includes=MainImage&limit=100&offset=250&`
-    )
-    // .then(res => res.json())
-    // .then(data => setState(data.results[0]))
-    const data = await response.json()
-    setState(data.results[0])
-    setImage(data.results[0].MainImage)
+  useEffect(() => {
+    fetch('/productfind', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id1.id })
+    })
+      .then(response => response.json())
+      .then(result => {
+        setState(result)
+        setImage(result.img)
+      })
   }, [])
+
   console.log(state)
 
   return (
@@ -50,26 +53,33 @@ function Product () {
           <SimpleGrid spacing={4} columns={{ base: 1, md: 5 }}>
             <GridItem colSpan={2}>
               <Center>
-                <Image src={image.url_fullxfull} />
+                <Image src={image} />
               </Center>
             </GridItem>
             <GridItem colSpan={3}>
               <Stack spacing={4}>
-                <Heading>{state.title}</Heading>
+                <Heading>{state.item}</Heading>
                 <Heading>Price: ${state.price}</Heading>
                 <Box mt={3}>
-                  <Tag as='i'>Category: {state.taxonomy_path}</Tag>
+                  <Tag as='i'>Category: {state.cat}</Tag>
                 </Box>
                 <Text mt={5} noOfLines={10}>
-                  Description: {state.description}
+                  Description: {state.desc}
                 </Text>
                 <HStack>
                   <Button w='xs' size='sm' colorScheme='linkedin'>
                     Buy now!
                   </Button>
-                  <Button w='xs' size='sm'>
-                    Share Product
-                  </Button>
+
+                  <WhatsappShareButton
+                    title='Sharing Button'
+                    url='www.youtube.com'
+                  >
+                    <WhatsappIcon
+                      logoFillColor='white'
+                      round='true'
+                    ></WhatsappIcon>
+                  </WhatsappShareButton>
                 </HStack>
               </Stack>
             </GridItem>

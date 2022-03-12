@@ -1,29 +1,37 @@
 import React from 'react'
 import logo from '../images/logo.png'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Header () {
+  const [isLogin, setIsLogin] = React.useState(false)
+  const navigate = useNavigate()
+  React.useEffect(() => {
+    checkLogin()
+  }, [])
+
+  function checkLogin () {
+    if (localStorage.getItem('user') === null) {
+      setIsLogin(false)
+    } else {
+      setIsLogin(true)
+    }
+  }
+
+  function logout () {
+    localStorage.removeItem('user')
+    checkLogin()
+    navigate('/', { replace: true })
+  }
+
   return (
     <header>
-      <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
         <a className='navbar-brand'>
           <img className='logo' src={logo} />
           <div style={{ marginBottom: '0', display: 'inline' }}>
-            <h1>Bliss Weavers</h1>
+            <h1>Shop Easy</h1>
           </div>
-          <div className='tagline'>
-            Put you <span style={{ fontWeight: 'bolder' }}>$</span> where your
-            💗 is <span style={{ fontWeight: 'bolder' }}>BUY LOCAL</span>
-          </div>
-          <div
-            style={{
-              height: '2px',
-              width: '15%',
-              backgroundColor: 'black',
-              marginLeft: '35%',
-              marginTop: '1%'
-            }}
-          ></div>
         </a>
         <button
           className='navbar-toggler'
@@ -57,27 +65,42 @@ function Header () {
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#tutorials-section'>
-                Tutorials
-              </a>
-            </li>
-            <li className='nav-item'>
               <a className='nav-link' href='#contact-section'>
                 Contact us
               </a>
             </li>
+            {isLogin && (
+              <li className='nav-item'>
+                <a className='nav-link' href='/shopkeeper'>
+                  Add Item
+                </a>
+              </li>
+            )}
           </ul>
 
           <form className='form-inline my-2 my-lg-0'>
-            <Link to={'/landingpage'}>
-              <button
-                className='btn btn-dark'
-                type='submit'
-                style={{ backgroundColor: '#1c0c5b' }}
-              >
-                Login
-              </button>
-            </Link>
+            {isLogin ? (
+              <Link to={'/'}>
+                <button
+                  className='btn1'
+                  type='submit'
+            
+                  onClick={logout}
+                >
+                  LOGOUT
+                </button>
+              </Link>
+            ) : (
+              <Link to={'/landingpage'}>
+                <button
+                  className='btn1'
+                  type='submit'
+                
+                >
+                  LOGIN
+                </button>
+              </Link>
+            )}
           </form>
         </div>
       </nav>

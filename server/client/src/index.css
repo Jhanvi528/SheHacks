@@ -1,26 +1,51 @@
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Work Sans", bold;
+}
+#root {
+  background-color: #effffd;
+  /* color: white; */
 }
 /* navbar */
 header {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3); */
+  background-color: #191a19;
+  color: white;
   top: 0;
   z-index: 100;
   position: sticky;
 }
 
+.AboutUs {
+  padding-bottom: 20px;
+}
 header h1 {
   font-weight: 500;
   font-size: 2rem;
   display: inline;
 }
 
+.btn1 {
+  border: 2px solid white;
+  background-color: 393e46;
+  color: white;
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+  transition-duration: 0.4s;
+}
+
+.btn1:hover {
+  background-color: white;
+  color: #222831;
+  font-weight: bold;
+  font-size: large;
+  border-radius: 100px;
+}
+
 .collapse {
   display: flex;
   justify-content: space-around;
-}
-.navbar {
-  background-color: #d5d5d5;
 }
 
 header .nav-item {
@@ -38,13 +63,9 @@ header ul {
 header .nav-link:hover {
   color: rgb(68, 67, 67);
 }
-.tagline {
-  text-align: center;
-  font-size: 1rem;
-  margin-right: 3%;
-  font-family: "Passions Conflict", cursive;
-}
+
 .logo {
+  background-color: white;
   display: inline;
   margin-top: 0;
   border-radius: 100%;
@@ -65,6 +86,7 @@ header .nav-link:hover {
 
 /* footer start  */
 footer {
+  background-color: #bbbbbb;
   text-align: center;
   bottom: 0;
   width: 100%;
@@ -110,32 +132,13 @@ footer p {
 
 /* about us start  */
 #aboutUs-section {
-  font-size: 1.5rem;
-  padding: 3%;
-}
-.about-us-title {
-  margin-left: 12%;
-}
-.about-us {
-  height: 300px;
-  background-color: #ededed;
+  padding: 5%;
   font-size: 1rem;
-  font-weight: bolder;
-  margin-left: 15%;
+  display: flex;
 }
-.about-us p {
-  width: 80%;
-}
-.artisan-img {
-  height: 300px;
-  width: 300px;
-  padding: 4%;
-  float: righ;
-}
+
 .about-us-content {
-  margin-left: 20%;
-  padding-top: 3%;
-  margin-right: 5%;
+  padding: 2%;
 }
 @media (max-width: 1000px) {
   .about-us {
@@ -150,29 +153,6 @@ footer p {
 }
 /* about us end  */
 
-/* youtube video section start  */
-.yt-tutorial {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.yt-video-main {
-  background-color: #1c0c5b;
-  text-align: center;
-  padding-top: 3%;
-  padding-bottom: 3%;
-}
-.yt-video {
-  display: inline;
-  margin: auto 4%;
-}
-@media (max-width: 1000px) {
-  .yt-video {
-    width: 40%;
-  }
-}
-/* youtube video section end */
-
 /* product section start */
 .product-card {
   height: 280px;
@@ -183,8 +163,7 @@ footer p {
   display: inline;
 }
 .products {
-  padding-top: 6%;
-  padding-bottom: 10%;
+  padding: 6% 0%;
 }
 .product-card-div {
   display: inline;
@@ -197,7 +176,7 @@ footer p {
 .product-card-content {
   opacity: 0.8;
   position: absolute;
-  background-color: #ea8484;
+  background-color: #79b4b7;
   font-size: 2rem;
   color: black;
   font-family: "Lobster", cursive;
@@ -213,3 +192,43 @@ footer p {
   }
 }
 /* product section end  */
+
+/* Landing page */
+.landing-page,
+.login-container,
+.signup-container {
+  display: flexbox;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5.4%;
+}
+
+.landing-page input {
+  background-color: #191a19;
+  color: white;
+  padding: 2% 4%;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.login-container input[type="button"],
+.signup-container input[type="button"] {
+  background-color: #191a19;
+  color: white;
+  padding: 2% 4%;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.shopkeeper-section {
+  display: flexbox;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5.4%;
+}
+.shopkeeper-section label {
+  padding: 1% 4% 1% 0%;
+}

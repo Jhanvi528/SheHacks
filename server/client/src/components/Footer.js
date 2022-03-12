@@ -1,6 +1,7 @@
 import React from 'react'
 import '../index.css'
 var date = new Date().getFullYear()
+
 function Footer () {
   return (
     <footer id='contact-section'>
@@ -9,7 +10,7 @@ function Footer () {
         <div>
           <div className='contact-us-icons'>
             <img src='https://img.icons8.com/ios-glyphs/30/000000/address.png' />
-            Address: Village Bajghera, Sec 12, Maharashtra-122017
+            Address: Dilli Haat, Safdarjung Enclave, Delhi
           </div>
           <div className='contact-us-icons'>
             <img src='https://img.icons8.com/ios-glyphs/30/000000/phone--v1.png' />
@@ -20,7 +21,7 @@ function Footer () {
               style={{ flex: 1, width: 50, height: 50, resizeMode: 'contain' }}
               src='https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-email-email-flatart-icons-outline-flatarticons-1.png'
             />
-            Email us: bliss@weavers.org
+            Email us: ShopEasy@gmail.org
           </div>
         </div>
         <h5 style={{ color: 'gray' }}>Reach us</h5>

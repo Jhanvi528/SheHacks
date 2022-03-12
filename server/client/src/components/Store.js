@@ -10,7 +10,6 @@ import {
   Input,
   Spinner
 } from '@chakra-ui/react'
-import axios from 'axios'
 import Header from './Header'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -20,10 +19,10 @@ function StoreItem (props) {
   return (
     <Box p={4} borderWidth='1px' borderRadius='lg'>
       <Center>
-        <Image src={props.MainImage.url_fullxfull} h={220} w={200} pb={4} />
+        <Image src={props.img} h={220} w={200} pb={4} />
       </Center>
       <Heading size='sm' fontWeight='normal' noOfLines={2}>
-        {props.title}
+        {props.item}
       </Heading>
       <Spacer />
 
@@ -35,18 +34,16 @@ function StoreItem (props) {
 function Store () {
   const [StoreItems, setStoreItem] = useState([])
   const [loading, setLoading] = useState(true)
-  const [searchItem, setSearchItem] = useState(StoreItems)
+  const [searchItem, setSearchItem] = useState([])
 
   useEffect(() => {
-    axios
-      .get(
-        'https://openapi.etsy.com/v2/listings/active?api_key=b2trjlfahlgzbgecvb26mbct&includes=MainImage&limit=100&offset=250&'
-      )
-      .then(({ data }) => {
-        setLoading(false)
-        setStoreItem(data.results)
-        setSearchItem(data.results)
-      })
+    fetch('/product')
+      .then(res => res.json())
+      .then(data => {
+        setSearchItem(data);
+        setStoreItem(data);
+        setLoading(false);
+      });
   }, [])
 
   return (
@@ -63,8 +60,8 @@ function Store () {
             mt={5}
             onChange={e => {
               setSearchItem(
-                StoreItems.filter(item =>
-                  item.title
+                StoreItems.filter(product =>
+                  product.item
                     .toLowerCase()
                     .includes(e.target.value.toLowerCase())
                 )
@@ -73,13 +70,10 @@ function Store () {
           />
 
           <SimpleGrid columns={4} spacing={10} mt={4} p={2}>
-            {searchItem.map(item => {
+            {searchItem.map(product => {
               return (
-                <Link
-                key={item.listing_id}
-                  to={ `/product/${item.listing_id}`}
-                >
-                  <StoreItem {...item} />
+                <Link key={product.id} to={`/product/${product.id}`}>
+                  <StoreItem {...product} />
                 </Link>
               )
             })}
