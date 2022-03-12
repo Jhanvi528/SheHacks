@@ -1,14 +1,14 @@
-import React from 'react'
+import React ,{useState}from 'react'
 
 import Store from './components/Store.js'
 import Product from './SingleProduct.js'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { category } from './components/Products'
 import Homepage from './components/Homepage.js'
-// import { SignIn } from './firebase/utils/signIn'
-import Homepage from './components/Homepage.js'
 import Login  from './components/Login.js'
 import Signup from './components/Signup.js'
+import LandingPage from "./components/LandingPage"
+
 
 function App () {
   const [user, setUserState] = useState({})
@@ -16,7 +16,6 @@ function App () {
   return (
     <Router>
       <Routes>
-
         <Route path='/' element={<Homepage />} />
         <Route exact path='/landingpage' element={<LandingPage />} />
         <Route

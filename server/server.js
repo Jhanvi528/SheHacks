@@ -1,9 +1,9 @@
-const dotenv = require("dotenv");
-dotenv.config();
+const dotenv = require('dotenv')
+dotenv.config()
 
 const express = require('express')
-const cors = require('cors');
-const app = express();
+const cors = require('cors')
+const app = express()
 
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -14,8 +14,9 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const bcypt = require('bcrypt')
 const noOfSaltRounds = 10
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors());
+app.use(cors())
 app.use(express.json())
 app.use(
   session({
@@ -28,7 +29,9 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-mongoose.connect(process.env.MONGOOSE_CONNECT,{ useNewUrlParser: true })
+mongoose.connect(process.env.MONGOOSE_CONNECT, { useNewUrlParser: true })
+
+mongoose.connect(process.env.MONGOOSE_CONNECT)
 const userSchema = new mongoose.Schema({
   email: String,
   password: String
@@ -42,9 +45,9 @@ passport.use(User.createStrategy())
 
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
 passport.use(
   new LocalStrategy(function (username, password, done) {
-
     User.findOne({ username: username }, function (err, user) {
       if (err) {
         return done(err)
@@ -65,15 +68,20 @@ passport.use(
   })
 )
 
+app.get("/",function(req,res){
+  res.send("Hello");
+});
+
 app.post('/login', function (req, res) {
-  const email = req.body.email
-  const password = req.body.password
-  User.findOne({ email: email }, function (err, foundUser) {
+  const email1 = req.body.email
+  const password1 = req.body.password
+
+  User.findOne({ email: email1 }, function (err, foundUser) {
     if (err) {
       console.log(err)
     } else {
       if (foundUser) {
-        bcypt.compare(password, foundUser.password, function (err, result) {
+        bcypt.compare(password1, foundUser.password, function (err, result) {
           if (result == true) {
             return res.send({
               message: 'Successfully authenticated',
@@ -114,13 +122,11 @@ app.post('/signup', function (req, res) {
   })
 })
 
-
-if(process.env.NODE_ENV==="production"){
-  app.use(express.static("client/build"));
-  
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
 }
 
-app.listen(process.env.PORT||5000, function (err) {
+app.listen(process.env.PORT || 5000, function (err) {
   if (err) {
     console.log(err)
   } else {
