@@ -24,7 +24,7 @@ function App () {
         <Route exact path='/landingpage' element={<LandingPage />} />
         <Route
           exact
-          path='/login'
+          path='/login' 
           element={
             user && user._id ? <Homepage /> : <Login loginUser={setUserState} />
           }
