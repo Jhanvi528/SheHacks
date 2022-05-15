@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1d3bc279.chunk.css",
+    "main.js": "/static/js/main.38d9f484.chunk.js",
+    "main.js.map": "/static/js/main.38d9f484.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.93db05ce.js",
+    "runtime-main.js.map": "/static/js/runtime-main.93db05ce.js.map",
+    "static/js/2.afb33571.chunk.js": "/static/js/2.afb33571.chunk.js",
+    "static/js/2.afb33571.chunk.js.map": "/static/js/2.afb33571.chunk.js.map",
+    "static/js/3.614b97e2.chunk.js": "/static/js/3.614b97e2.chunk.js",
+    "static/js/3.614b97e2.chunk.js.map": "/static/js/3.614b97e2.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.1d3bc279.chunk.css.map": "/static/css/main.1d3bc279.chunk.css.map",
+    "static/js/2.afb33571.chunk.js.LICENSE.txt": "/static/js/2.afb33571.chunk.js.LICENSE.txt",
+    "static/media/accessories.dbb93c4c.jpg": "/static/media/accessories.dbb93c4c.jpg",
+    "static/media/clothes.063dfd14.jpg": "/static/media/clothes.063dfd14.jpg",
+    "static/media/electronic.8fa9ab32.jpg": "/static/media/electronic.8fa9ab32.jpg",
+    "static/media/grocery.3d020d98.jpg": "/static/media/grocery.3d020d98.jpg",
+    "static/media/logo.0d08c11d.png": "/static/media/logo.0d08c11d.png",
+    "static/media/slider (1).3e994a52.jpg": "/static/media/slider (1).3e994a52.jpg",
+    "static/media/slider (2).7ebad467.jpg": "/static/media/slider (2).7ebad467.jpg",
+    "static/media/slider (3).e150fd9d.jpg": "/static/media/slider (3).e150fd9d.jpg",
+    "static/media/slider (4).a5970e88.jpg": "/static/media/slider (4).a5970e88.jpg",
+    "static/media/slider (5).58b61e52.jpg": "/static/media/slider (5).58b61e52.jpg",
+    "static/media/slider (6).12da9ec3.jpg": "/static/media/slider (6).12da9ec3.jpg",
+    "static/media/vocalforlocal.1dae2ed3.png": "/static/media/vocalforlocal.1dae2ed3.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.93db05ce.js",
+    "static/js/2.afb33571.chunk.js",
+    "static/css/main.1d3bc279.chunk.css",
+    "static/js/main.38d9f484.chunk.js"
+  ]
+}
