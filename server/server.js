@@ -4,6 +4,8 @@ dotenv.config()
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const path = require('path')
+
 
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
@@ -197,7 +199,6 @@ app.post('/productfind', function (req, res) {
 })
 
 if (process.env.NODE_ENV === 'production') {
-  const path = require('path')
   app.get('/', (req, res) => {
     app.use(express.static(path.resolve(__dirname, 'client', 'build')))
     res.sendFile(path.resolve(__dirname,'client','build','index.html'))

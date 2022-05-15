@@ -25,3 +25,4 @@ src/my-app/.env.production.local
 src/my-app/npm-debug.log*
 src/my-app/yarn-debug.log*
 src/my-app/yarn-error.log*
+.vercel
