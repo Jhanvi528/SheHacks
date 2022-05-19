@@ -19,8 +19,8 @@ function Login ({ loginUser }) {
   }
   const loginDataSend = () => {
     axios.post('/login', user).then(res => {
-      if (res.data.user != null) {
-        loginUser(res.data.user)
+      if (user.email != null) {
+        loginUser(user.email)
         localStorage.setItem('user', user.email)
         navigate('/', { replace: true })
       } else {
