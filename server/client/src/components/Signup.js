@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation, initReactI18next } from 'react-i18next'
+import Header from './Header'
 import Footer from './Footer'
 function Signup () {
+  const { t } = useTranslation()
+
   const navigate = useNavigate()
   const [user, setUser] = useState({
     email: '',
@@ -31,12 +35,13 @@ function Signup () {
 
   return (
     <div>
+    <Header/>
       <div className='signup-container'>
-        <h1>Signup</h1>
+        <h1>{t('Signup')}</h1>
 
         <span>
-          Already have an account?
-          <Link to='/login'>Login</Link>
+      {t('alreadyacc')}
+          <Link to='/login'>{t('Login')}</Link>
         </span>
         <form method='post'>
           <hr />
@@ -44,7 +49,7 @@ function Signup () {
             type='email'
             name='email'
             value={user.email}
-            placeholder='Enter your email'
+            placeholder={t('email')}
             onChange={handleChange}
           />
           <hr />
@@ -52,14 +57,14 @@ function Signup () {
             type='password'
             name='password'
             value={user.password}
-            placeholder='Enter your password'
+            placeholder={t('password')}
             onChange={handleChange}
           />
           <hr />
           <input
             type='button'
             onClick={signupDataSend}
-            value='Sign up'
+            value={t('Signup')}
             name='signup'
           ></input>
         </form>

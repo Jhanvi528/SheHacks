@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { useTranslation, initReactI18next } from 'react-i18next'
+import Header from './Header'
 function ShopKeeper () {
   const navigate = useNavigate()
   const [isLogin, setIsLogin] = React.useState(false)
@@ -58,82 +59,95 @@ function ShopKeeper () {
   React.useEffect(() => {
     checkLogin()
   }, [])
+  const { t } = useTranslation()
 
   return (
-    <div className='shopkeeper-section'>
-      <form method='post' onSubmit={handleSubmit} enctype='multipart/form-data'>
-        <h1>Enter Details</h1>
-        <label>Enter Shopkeeper Name: </label>
-        <input
-          type='text'
-          name='name'
-          value={shopkeep.name}
-          placeholder='Enter Shopkeeper Name'
-          onChange={handleChange}
-          required={true}
-        />
-        <br />
-        <label>Enter Location: </label>
-        <input
-          type='text'
-          name='location'
-          value={shopkeep.location}
-          placeholder='Enter Shopkeeper location'
-          onChange={handleChange}
-          required={true}
-        />
-        <br />
-        <label>Enter Item Name:</label>
-        <input
-          type='text'
-          name='item'
-          value={shopkeep.item}
-          placeholder='Enter Item Name'
-          onChange={handleChange}
-          required={true}
-        />
-        <br />
-        <label>Enter Price Name:</label>
-        <input
-          type='integer'
-          name='price'
-          value={shopkeep.price}
-          placeholder='Enter price'
-          onChange={handleChange}
-          required={true}
-        />
-        <br />
-        <label>Enter Category:</label>
-
-        <select name='cat' id='cat' onChange={handleChange}>
-          <option value='grocery'>Grocery</option>
-          <option value='electronics'>Electronics</option>
-          <option value='clothing'>Clothing</option>
-          <option value='accessories'>Accessories</option>
-        </select>
-        <br />
-        <label>Enter Description Name:</label>
-        <input
-          type='text'
-          name='desc'
-          value={shopkeep.desc}
-          placeholder='Enter Description'
-          onChange={handleChange}
-          required={true}
-        />
-        <br />
-        <label>Enter Image URL:</label>
-        <input type='text' name='img' onChange={handleChange} required={true} />
-        <br />
-        <button
-          className='btn btn-dark'
-          type='submit'
-          style={{ backgroundColor: '#1c0c5b' }}
+    <>
+      <Header></Header>
+      <div className='shopkeeper-section'>
+        <form
+          method='post'
+          onSubmit={handleSubmit}
+          enctype='multipart/form-data'
         >
-          Add Item
-        </button>
-      </form>
-    </div>
+          <h1>{t('EnterDetails')}</h1>
+          <label>{t('s1')}</label>
+          <input
+            type='text'
+            name='name'
+            value={shopkeep.name}
+            placeholder='Enter Shopkeeper Name'
+            onChange={handleChange}
+            required={true}
+          />
+          <br />
+          <label>{t('s2')} </label>
+          <input
+            type='text'
+            name='location'
+            value={shopkeep.location}
+            placeholder='Enter Shopkeeper location'
+            onChange={handleChange}
+            required={true}
+          />
+          <br />
+          <label>{t('s3')}</label>
+          <input
+            type='text'
+            name='item'
+            value={shopkeep.item}
+            placeholder='Enter Item Name'
+            onChange={handleChange}
+            required={true}
+          />
+          <br />
+          <label>{t('s4')}</label>
+          <input
+            type='integer'
+            name='price'
+            value={shopkeep.price}
+            placeholder='Enter price'
+            onChange={handleChange}
+            required={true}
+          />
+          <br />
+          <label>{t('s5')}</label>
+
+          <select name='cat' id='cat' onChange={handleChange}>
+            <option value='grocery'>{t('GROCERY')}</option>
+            <option value='electronics'>{t('ELECTRONICS')}</option>
+            <option value='clothing'>{t('CLOTHING')}</option>
+            <option value='accessories'>{t('ACCESSORIES')}</option>
+          </select>
+          <br />
+          <label>{t('s6')}</label>
+          <input
+            type='text'
+            name='desc'
+            value={shopkeep.desc}
+            placeholder='Enter Description'
+            onChange={handleChange}
+            required={true}
+          />
+          <br />
+          <label>{t('s7')}</label>
+          <input
+            type='text'
+            name='img'
+            onChange={handleChange}
+            required={true}
+          />
+          <br />
+          <button
+            className='btn btn-dark'
+            type='submit'
+            style={{ backgroundColor: '#1c0c5b' }}
+          >
+            {t('AddItem')}
+          </button>
+        </form>
+      </div>
+    </>
   )
 }
 

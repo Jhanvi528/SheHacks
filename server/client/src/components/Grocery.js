@@ -14,6 +14,8 @@ import Header from './Header'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from './Footer'
+import { useTranslation, initReactI18next } from 'react-i18next'
+
 
 function StoreItem (props) {
   return (
@@ -32,6 +34,8 @@ function StoreItem (props) {
 }
 
 function Grocery () {
+  const { t } = useTranslation()
+
   const [StoreItems, setStoreItem] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchItem, setSearchItem] = useState(StoreItems)
@@ -57,7 +61,7 @@ function Grocery () {
       ) : (
         <Box p={4}>
           <Input
-            placeholder='Search'
+            placeholder={t('Search')}
             mt={5}
             onChange={e => {
               setSearchItem(

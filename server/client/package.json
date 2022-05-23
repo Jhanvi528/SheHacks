@@ -18,6 +18,9 @@
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "framer-motion": "^4.1.17",
+    "i18next": "^21.8.4",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-http-backend": "^1.4.0",
     "mongoose": "^6.2.5",
     "node-cleanup": "^2.1.2",
     "nodemon": "^2.0.15",
@@ -26,6 +29,7 @@
     "passport-local-mongoose": "^6.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.16.9",
     "react-router-dom": "^6.2.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2"

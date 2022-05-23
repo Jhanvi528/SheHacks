@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation, initReactI18next } from 'react-i18next'
+
 import {
   Box,
   Button,
@@ -43,6 +45,7 @@ function Product () {
         setImage(result.img)
       })
   }, [])
+  const { t } = useTranslation()
 
   return (
     <Box>
@@ -58,16 +61,16 @@ function Product () {
             <GridItem colSpan={3}>
               <Stack spacing={4}>
                 <Heading>{state.item}</Heading>
-                <Heading>Price: ${state.price}</Heading>
+                <Heading>{t('Price')}: ${state.price}</Heading>
                 <Box mt={3}>
-                  <Tag as='i'>Category: {state.cat}</Tag>
+                  <Tag as='i'>{t('Category')}:{state.cat}</Tag>
                 </Box>
                 <Text mt={5} noOfLines={10}>
-                  Description: {state.desc}
+                  {t('Description')}: {state.desc}
                 </Text>
                 <HStack>
                   <Button w='xs' size='sm' colorScheme='linkedin'>
-                    Buy now!
+                    {t('Buynow!')}
                   </Button>
 
                   <WhatsappShareButton
