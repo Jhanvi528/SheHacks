@@ -6,7 +6,6 @@ const cors = require('cors')
 const app = express()
 const path = require('path')
 
-
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -198,13 +197,26 @@ app.post('/productfind', function (req, res) {
   })
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.get('/', (req, res) => {
-    app.use(express.static(path.resolve(__dirname, 'client', 'build')))
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-  })
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.get('/', (req, res) => {
+//     app.use(express.static(path.resolve(__dirname, 'client', 'build')))
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+//   })
+// }
+app.get('/api/test', (req, res) => {
+  res.send('test')
+})
 
+app.use(express.static(path.join(__dirname, './client/build')))
+app.get('*', function (_, res) {
+  res.sendFile(path.join(__dirname, './client/build/index.html'), function (
+    err
+  ) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 app.listen(process.env.PORT || 5000, function (err) {
   if (err) {
     console.log(err)
